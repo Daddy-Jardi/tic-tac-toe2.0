@@ -1,9 +1,10 @@
-from helper import draw_board, check_turn
+from helper import draw_board, check_turn, check_for_win
 import os
 
 spots = {1:'1',2:'2',3:'3',4:'4',5:'5',6:'6',7:'7',8:'8',9:'9'}
 
 playing = True
+complete = False
 turn = 0
 prev_turn = -1
 while playing:
@@ -21,6 +22,9 @@ while playing:
         if not spots[int(choice)] in {'X', 'O'}:
             turn += 1
             spots[int(choice)] = check_turn(turn)
+    if check_for_win(spots):
+        playing, complete = False, True
+    if turn > 8: plating  = False
 
 
     
